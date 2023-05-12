@@ -5,17 +5,17 @@ import AppError from "../../errors";
 import { TSchedules, TSchedulesRegister } from "../../interfaces/schedules.interfaces";
 import { schedulesSchema } from "../../schemas/schedules.schemas";
 
-export const createSchedulesService = async (payload: TSchedulesRegister,userId:number): Promise<TSchedules> => {
+export const createSchedulesService = async (payload: TSchedulesRegister, userId: number): Promise<string> => {
 
     const schedulesRepo: Repository<Schedule> = AppDataSource.getRepository(Schedule);
     const usersRepo: Repository<User> = AppDataSource.getRepository(User);
     const realEstateRepo: Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
 
-    const user = await usersRepo.findOneBy({ id:userId });
+    const user = await usersRepo.findOneBy({ id: userId });
     const realEstate = await realEstateRepo.findOneBy({ id: payload.realEstateId });
 
     if (!realEstate) {
-        throw new AppError('');
+        throw new AppError('RealEstate not found');
     }
 
     realEstate.value = parseFloat(realEstate!.value.toString());
@@ -28,8 +28,10 @@ export const createSchedulesService = async (payload: TSchedulesRegister,userId:
     }
     const newSchedule = schedulesRepo.create(scheduleRegister);
 
+    await schedulesRepo.save(newSchedule);
 
-    const response: TSchedules = schedulesSchema.parse(newSchedule);
+
+    const response = "Schedule created";
 
 
     return response;

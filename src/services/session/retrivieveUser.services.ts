@@ -1,5 +1,4 @@
 import { verify } from "jsonwebtoken";
-
 import "dotenv/config";
 import AppError from "../../errors";
 

@@ -3,17 +3,12 @@ import AppError from "../errors";
 
 
 const ensureThatSchedulingIsOnOneBusinessDay = async (req: Request,res: Response,next: NextFunction) => {
-
     let date: Date = new Date(req.body.date);
-
 
     if (date.getDay() === 6 || date.getDay() === 0) {
         throw new AppError("Invalid date, work days are monday to friday", 400);
     }
 
     return next();
-
-
-
 }
-export default ensureThatSchedulingIsOnOneBusinessDay
+export default ensureThatSchedulingIsOnOneBusinessDay;

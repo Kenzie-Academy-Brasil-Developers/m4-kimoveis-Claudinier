@@ -2,10 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import AppError from "../errors";
 import { verifyIdExistsService } from "../services/user/verifyIdExists.service";
 
-
-
-
-
 export const verifyIdExists = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
 

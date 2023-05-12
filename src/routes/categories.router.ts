@@ -10,8 +10,6 @@ import { verifyPermissioMiddleware } from "../middlewares/verifyPermission.middl
 import { categorySchemaRegister } from "../schemas/category.schemas";
 
 
-
-
 const categoriesRouter: Router = Router();
 
 

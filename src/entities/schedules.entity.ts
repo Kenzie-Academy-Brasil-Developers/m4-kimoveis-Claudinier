@@ -15,7 +15,7 @@ class Schedule{
     hour: Date
     
     @ManyToOne(()=> User, user => user.id)
-    userId:User
+    user:User
 
     @ManyToOne(()=> RealEstate, realEstate => realEstate.id)
     realEstate:RealEstate

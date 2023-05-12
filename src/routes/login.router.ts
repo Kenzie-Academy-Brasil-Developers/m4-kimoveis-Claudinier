@@ -3,9 +3,7 @@ import { createSessionController } from "../controllers/users/createSession.cont
 import ensurePayloadIsVaild from "../middlewares/ensurePayloadIsVaild.middleware";
 import { userSchemaLogin } from "../schemas/user.schemas";
 
-
 const loginRouter: Router = Router();
-
 
 loginRouter.post('/', ensurePayloadIsVaild.body(userSchemaLogin),createSessionController);
 

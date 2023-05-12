@@ -4,11 +4,10 @@ import { AppDataSource } from "../data-source";
 import { RealEstate } from "../entities";
 import AppError from "../errors";
 
-
 const ensureRealEstateExistsByIdMiddlewares = async (req: Request, res:Response, next: NextFunction) =>{
 
     const realEstateRepository : Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
-    const realEstateId: number = Number(req.body.realEstateId);
+    const realEstateId: number = Number(req.body.realEstateId) || Number(req.params.id);
 
     const realEstate = await realEstateRepository.exist({where : {id: realEstateId}});
 

@@ -9,18 +9,13 @@ export const getAllRealEstatesService = async (): Promise<TListRealEstateRespons
     const realEstateRepo: Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
 
     const realEsates = await realEstateRepo.createQueryBuilder('realEsate')
-        .innerJoinAndSelect('realEsate.category', 'categories')
-        .innerJoinAndSelect('realEsate.address', 'address')
+        .leftJoinAndSelect('realEsate.address', 'address')
         .getMany();
-
-
-        console.log(realEsates[0],"REALESTATE SERVICE!");
-        
 
     const response: TListRealEstateResponse = realEsates.map(realEstate => {
 
         realEstate.value = parseFloat(realEstate.value.toString());
-        return realEstateSchema.parse(realEstate)
+        return realEstateSchema.omit({category:true}).parse(realEstate)
     });
 
     return response;

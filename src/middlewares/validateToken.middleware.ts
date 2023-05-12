@@ -1,12 +1,8 @@
 
 import { NextFunction, Request, Response } from "express";
-import { verify } from "jsonwebtoken";
-
 import "dotenv/config";
 import AppError from "../errors";
 import retrieveUserService from "../services/session/retrivieveUser.services";
-
-
 
 const validateToken = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 

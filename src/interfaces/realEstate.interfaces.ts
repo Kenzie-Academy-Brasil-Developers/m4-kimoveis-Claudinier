@@ -5,7 +5,6 @@ type TRealEstateRequest = z.infer<typeof realEstateSchemaRequest>
 type TRealEstateResponse = z.infer<typeof realEstateSchema>
 type TListRealEstateResponse = z.infer<typeof listRealEstateSchema>
 
-
 export {
     TRealEstateRequest,
     TRealEstateResponse,

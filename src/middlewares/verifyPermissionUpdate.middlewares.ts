@@ -4,11 +4,8 @@ import { TUser } from "../interfaces/users.interfaces";
 
 const verifyPermissionUpdate = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
-
-    
-    
     const user = res.locals.userValidated;
-    
+
     const id = Number(req.params.id);
 
 

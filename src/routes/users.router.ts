@@ -12,7 +12,6 @@ import { verifyPermissionUpdate } from "../middlewares/verifyPermissionUpdate.mi
 import { userSchemaRegister, userSchemaUpdateRequest } from "../schemas/user.schemas";
 
 const userRouter: Router = Router();
-
 userRouter.get('/', validateToken, verifyPermissioMiddleware, getAllUsersController);
 userRouter.post('/', ensurePayloadIsVaild.body(userSchemaRegister), verifyEmailExists, createUserController);
 userRouter.patch('/:id', verifyIdExists, ensurePayloadIsVaild.body(userSchemaUpdateRequest), validateToken, verifyPermissionUpdate, verifyEmailExists, updateUserController);
